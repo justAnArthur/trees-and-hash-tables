@@ -1,0 +1,6 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99.9%)","Unit","Param: size"
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.put","ss",1,1,1.315900,NaN,"ms/op",100
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.put","ss",1,1,6.664900,NaN,"ms/op",1000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.put","ss",1,1,13.409400,NaN,"ms/op",10000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.put","ss",1,1,100.514600,NaN,"ms/op",100000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.put","ss",1,1,1116.043200,NaN,"ms/op",1000000

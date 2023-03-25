@@ -1,0 +1,9 @@
+dontinline,*.*_all_jmhStub
+dontinline,*.*_avgt_jmhStub
+dontinline,*.*_sample_jmhStub
+dontinline,*.*_ss_jmhStub
+dontinline,*.*_thrpt_jmhStub
+inline,com/fiit/dsa/hashTable/test/OpenHashTableTest.get
+inline,com/fiit/dsa/hashTable/test/OpenHashTableTest.put
+inline,com/fiit/dsa/hashTable/test/OpenHashTableTest.remove
+inline,com/fiit/dsa/hashTable/test/OpenHashTableTest.setUp

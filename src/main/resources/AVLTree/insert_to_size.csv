@@ -1,0 +1,7 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99.9%)","Unit","Param: size"
+"com.fiit.dsa.tree.test.AVLTreeTest.insert_to_size","ss",1,1,0.007400,NaN,"ms/op",100
+"com.fiit.dsa.tree.test.AVLTreeTest.insert_to_size","ss",1,1,0.004300,NaN,"ms/op",1000
+"com.fiit.dsa.tree.test.AVLTreeTest.insert_to_size","ss",1,1,0.045600,NaN,"ms/op",10000
+"com.fiit.dsa.tree.test.AVLTreeTest.insert_to_size","ss",1,1,0.055700,NaN,"ms/op",100000
+"com.fiit.dsa.tree.test.AVLTreeTest.insert_to_size","ss",1,1,0.015500,NaN,"ms/op",1000000
+"com.fiit.dsa.tree.test.AVLTreeTest.insert_to_size","ss",1,1,1.342000,NaN,"ms/op",10000000

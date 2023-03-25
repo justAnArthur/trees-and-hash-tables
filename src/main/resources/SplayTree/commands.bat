@@ -1,0 +1,2 @@
+
+graph .\insert_random.csv -x "Score" -y "Param: size" -l "insert_random" --fontsize 8 --chain |  graph .\insert_sorted.csv -x "Score" -y "Param: size" -l "insert_sorted" --chain |  graph .\insert_to_size.csv -x "Score" -y "Param: size" -l "insert_to_size" --chain | graph .\delete.csv -x "Score" -y "Param: size" -l "delete" --chain | graph .\search.csv -x "Score" -y "Param: size" -l "search" --xlabel "Milliseconds" --ylabel "Number of operation" --title "Splay" -o .\graph.png

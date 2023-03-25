@@ -1,0 +1,6 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99.9%)","Unit","Param: size"
+"com.fiit.dsa.hashTable.test.OpenHashTableTest.remove","ss",1,1,0.088900,NaN,"ms/op",100
+"com.fiit.dsa.hashTable.test.OpenHashTableTest.remove","ss",1,1,0.357000,NaN,"ms/op",1000
+"com.fiit.dsa.hashTable.test.OpenHashTableTest.remove","ss",1,1,19.356300,NaN,"ms/op",10000
+"com.fiit.dsa.hashTable.test.OpenHashTableTest.remove","ss",1,1,426.775200,NaN,"ms/op",100000
+"com.fiit.dsa.hashTable.test.OpenHashTableTest.remove","ss",1,1,18853.013300,NaN,"ms/op",1000000
