@@ -3,6 +3,8 @@ package com.fiit.dsa.hashTable.test;
 import com.fiit.dsa.hashTable.ClosedHashTable;
 import org.openjdk.jmh.annotations.*;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
@@ -11,15 +13,27 @@ public class ClosedHashTableTest {
     @Param({"100"})
     public int size;
 
-    private Random random;
-
     @Setup(Level.Invocation)
     public void setUp() {
-        random = new Random();
+        randomSetUp();
         putSetUp();
         getSetUp();
         removeSetUp();
     }
+
+    private record KeyValuePair<K, V>(K key, V value) {
+    }
+
+    Map<Integer, KeyValuePair<String, Integer>> randomValues;
+
+    private void randomSetUp() {
+        Random random = new Random();
+        randomValues = new HashMap<>();
+        for (int i = 0; i <= size; i++) {
+            randomValues.put(i, new KeyValuePair<>(UUID.randomUUID().toString(), random.nextInt(size)));
+        }
+    }
+
 
     ClosedHashTable<String, Integer> putOpenHT;
 
@@ -30,49 +44,41 @@ public class ClosedHashTableTest {
     @Benchmark
     public void put() {
         for (int i = 0; i < size; i++) {
-            putOpenHT.put(UUID.randomUUID().toString(), random.nextInt(size));
+            putOpenHT.put(randomValues.get(i).key, randomValues.get(i).value);
         }
     }
 
 
     ClosedHashTable<String, Integer> getOpenHT;
-    String[] gottenValues;
 
     public void getSetUp() {
         getOpenHT = new ClosedHashTable<>(size);
-        gottenValues = new String[size];
         for (int i = 0; i < size; i++) {
-            String key = UUID.randomUUID().toString();
-            getOpenHT.put(key, random.nextInt(size));
-            gottenValues[i] = key;
+            getOpenHT.put(randomValues.get(i).key, randomValues.get(i).value);
         }
     }
 
     @Benchmark
     public void get() {
         for (int i = 0; i < size; i++) {
-            getOpenHT.get(gottenValues[i]);
+            getOpenHT.get(randomValues.get(i).key);
         }
     }
 
 
     ClosedHashTable<String, Integer> removeOpenHT;
-    String[] toRemoveValues;
 
     public void removeSetUp() {
         removeOpenHT = new ClosedHashTable<>(size);
-        toRemoveValues = new String[size];
         for (int i = 0; i < size; i++) {
-            String key = UUID.randomUUID().toString();
-            removeOpenHT.put(key, random.nextInt(size));
-            toRemoveValues[i] = key;
+            removeOpenHT.put(randomValues.get(i).key, randomValues.get(i).value);
         }
     }
 
     @Benchmark
     public void remove() {
         for (int i = 0; i < size; i++) {
-            removeOpenHT.get(toRemoveValues[i]);
+            removeOpenHT.get(randomValues.get(i).key);
         }
     }
 }

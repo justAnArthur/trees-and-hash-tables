@@ -29,8 +29,8 @@ public class Logger {
     public static void main(String[] args) throws RunnerException {
 
         String[] stringedToTestClasses = {
-//                AVLTreeTest.class.getSimpleName(),
-//                SplayTreeTest.class.getSimpleName(),
+                AVLTreeTest.class.getSimpleName(),
+                SplayTreeTest.class.getSimpleName(),
                 OpenHashTableTest.class.getSimpleName(),
                 ClosedHashTableTest.class.getSimpleName(),
         };
@@ -45,7 +45,7 @@ public class Logger {
                     .forks(1)
                     .result(basePath + stringedToTestClass.substring(0, stringedToTestClass.length() - 4) + "/sample.csv")
                     .resultFormat(ResultFormatType.CSV)
-                    .param("size", "100", "1000", "10000", "50000", "100000", "200000", "300000", "400000", "500000", "600000", "700000", "800000", "900000", "1000000")
+                    .param("size", "1000")
                     .build();
 
             new Runner(options).run();

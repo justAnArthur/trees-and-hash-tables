@@ -11,16 +11,24 @@ public class AVLTreeTest {
     @Param({"100"})
     public int size;
 
-    private Random random;
-
     @Setup(Level.Invocation)
     public void setUp() {
-        random = new Random();
+        setUpRandom();
+
         insertRandomSetUp();
         insertSortedSetUp();
         insertToSizeSetUp();
         searchSetUp();
         deleteSetUp();
+    }
+
+    private int[] randomValues;
+
+    private void setUpRandom() {
+        Random random = new Random();
+        randomValues = new int[size + 1];
+        for (int i = 0; i < size; i++)
+            randomValues[i] = random.nextInt(size);
     }
 
 
@@ -32,8 +40,8 @@ public class AVLTreeTest {
 
     @Benchmark
     public void insert_random() {
-        for (int i = 0; i < size; i++) {
-            insertRandomTree.insert(random.nextInt(size));
+        for (int i = 0; i <= size; i++) {
+            insertRandomTree.insert(randomValues[i]);
         }
     }
 
@@ -57,54 +65,46 @@ public class AVLTreeTest {
     public void insertToSizeSetUp() {
         insertToSizeTree = new AVLTree();
         for (int i = 0; i < size; i++) {
-            insertToSizeTree.insert(random.nextInt(size));
+            insertToSizeTree.insert(randomValues[i]);
         }
     }
 
     @Benchmark
     public void insert_to_size() {
-        insertSortedTree.insert(random.nextInt(size + 1));
+        insertSortedTree.insert(randomValues[size]);
     }
 
 
     AVLTree searchTree;
-    Integer[] searchedValues;
 
     public void searchSetUp() {
         searchTree = new AVLTree();
-        searchedValues = new Integer[size];
         for (int i = 0; i < size; i++) {
-            int number = random.nextInt(size);
-            searchTree.insert(number);
-            searchedValues[i] = number;
+            searchTree.insert(randomValues[i]);
         }
     }
 
     @Benchmark
     public void search() {
         for (int i = 0; i < size; i++) {
-            insertSortedTree.search(searchedValues[i]);
+            insertSortedTree.search(randomValues[i]);
         }
     }
 
 
     AVLTree deleteTree;
-    Integer[] deletedValues;
 
     public void deleteSetUp() {
         deleteTree = new AVLTree();
-        deletedValues = new Integer[size];
         for (int i = 0; i < size; i++) {
-            int number = random.nextInt(size);
-            deleteTree.insert(number);
-            deletedValues[i] = number;
+            deleteTree.insert(randomValues[i]);
         }
     }
 
     @Benchmark
     public void delete() {
         for (int i = 0; i < size; i++) {
-            deleteTree.delete(deletedValues[i]);
+            deleteTree.delete(randomValues[i]);
         }
     }
 }

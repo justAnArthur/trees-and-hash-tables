@@ -1,7 +1,7 @@
-graph .\get.csv -x "Score" -y "Param: size" --xlabel "Milliseconds" --ylabel "Number of operation" --title "ClosedHashTable_get" -o .\get.png --fontsize 10
+graph get.csv -x "Param: size" -y "Score" --xlabel "Number of operation" --ylabel "Milliseconds" --title "get" -o get.png --fontsize 10 --marker ""
 
-graph .\put.csv -x "Score" -y "Param: size" --xlabel "Milliseconds" --ylabel "Number of operation" --title "ClosedHashTable_put" -o .\put.png --fontsize 10
+graph put.csv -x "Param: size" -y "Score" --xlabel "Number of operation" --ylabel "Milliseconds" --title "put" -o put.png --fontsize 10 --marker ""
 
-graph .\remove.csv -x "Score" -y "Param: size" --xlabel "Milliseconds" --ylabel "Number of operation" --title "ClosedHashTable_remove" -o .\remove.png --fontsize 10
+graph remove.csv -x "Param: size" -y "Score" --xlabel "Number of operation" --ylabel "Milliseconds" --title "remove" -o remove.png --fontsize 10 --marker ""
 
-graph .\get.csv -x "Score" -y "Param: size" -l "insert_random" --fontsize 8 --chain | graph .\put.csv -x "Score" -y "Param: size" -l "delete" --chain | graph .\remove.csv -x "Score" -y "Param: size" -l "search" --xlabel "Milliseconds" --ylabel "Number of operation" --title "ClosedHashTable" -o .\graph.png
+graph get.csv -x "Param: size" -y "Score" --xlabel "Number of operation" --ylabel "Milliseconds" --fontsize 10 -l "get" --marker "" --chain | graph put.csv -x "Param: size" -y "Score" -l "put" --marker "" --chain | graph remove.csv -x "Param: size" -y "Score" -l "remove" --marker "" --title "Open Hashtable" -o sample.png

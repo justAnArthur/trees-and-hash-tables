@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="MarkdownSettings">
+    <option name="customStylesheetText" value="pre {&#10;    font-size: 5pt;&#10;}" />
     <option name="enhancedEditingEnabled" value="false" />
     <option name="showProblemsInCodeBlocks" value="false" />
+    <option name="useCustomStylesheetText" value="true" />
     <option name="verticalSplit" value="false" />
   </component>
 </project>
