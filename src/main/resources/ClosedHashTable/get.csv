@@ -1,6 +1,15 @@
 "Benchmark","Mode","Threads","Samples","Score","Score Error (99.9%)","Unit","Param: size"
-"com.fiit.dsa.hashTable.test.ClosedHashTableTest.get","ss",1,1,0.043900,NaN,"ms/op",100
-"com.fiit.dsa.hashTable.test.ClosedHashTableTest.get","ss",1,1,0.420500,NaN,"ms/op",1000
-"com.fiit.dsa.hashTable.test.ClosedHashTableTest.get","ss",1,1,1.612600,NaN,"ms/op",10000
-"com.fiit.dsa.hashTable.test.ClosedHashTableTest.get","ss",1,1,13.835800,NaN,"ms/op",100000
-"com.fiit.dsa.hashTable.test.ClosedHashTableTest.get","ss",1,1,130.632700,NaN,"ms/op",1000000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.get","ss",1,1,0.061300,NaN,"ms/op",100
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.get","ss",1,1,1.615988,NaN,"ms/op",1000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.get","ss",1,1,1.962186,NaN,"ms/op",10000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.get","ss",1,1,7.173648,NaN,"ms/op",50000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.get","ss",1,1,13.384302,NaN,"ms/op",100000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.get","ss",1,1,25.606412,NaN,"ms/op",200000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.get","ss",1,1,30.216994,NaN,"ms/op",300000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.get","ss",1,1,37.360846,NaN,"ms/op",400000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.get","ss",1,1,40.176527,NaN,"ms/op",500000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.get","ss",1,1,48.706069,NaN,"ms/op",600000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.get","ss",1,1,60.611363,NaN,"ms/op",700000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.get","ss",1,1,63.166503,NaN,"ms/op",800000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.get","ss",1,1,71.265593,NaN,"ms/op",900000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.get","ss",1,1,77.759947,NaN,"ms/op",1000000

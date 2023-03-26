@@ -1,6 +1,15 @@
 "Benchmark","Mode","Threads","Samples","Score","Score Error (99.9%)","Unit","Param: size"
-"com.fiit.dsa.hashTable.test.ClosedHashTableTest.remove","ss",1,1,0.108400,NaN,"ms/op",100
-"com.fiit.dsa.hashTable.test.ClosedHashTableTest.remove","ss",1,1,0.291800,NaN,"ms/op",1000
-"com.fiit.dsa.hashTable.test.ClosedHashTableTest.remove","ss",1,1,1.598800,NaN,"ms/op",10000
-"com.fiit.dsa.hashTable.test.ClosedHashTableTest.remove","ss",1,1,10.078800,NaN,"ms/op",100000
-"com.fiit.dsa.hashTable.test.ClosedHashTableTest.remove","ss",1,1,79.879600,NaN,"ms/op",1000000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.remove","ss",1,1,0.057300,NaN,"ms/op",100
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.remove","ss",1,1,0.417697,NaN,"ms/op",1000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.remove","ss",1,1,1.589789,NaN,"ms/op",10000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.remove","ss",1,1,5.305767,NaN,"ms/op",50000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.remove","ss",1,1,9.223641,NaN,"ms/op",100000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.remove","ss",1,1,23.223452,NaN,"ms/op",200000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.remove","ss",1,1,28.547218,NaN,"ms/op",300000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.remove","ss",1,1,33.687586,NaN,"ms/op",400000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.remove","ss",1,1,39.939145,NaN,"ms/op",500000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.remove","ss",1,1,55.335402,NaN,"ms/op",600000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.remove","ss",1,1,62.789262,NaN,"ms/op",700000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.remove","ss",1,1,63.225559,NaN,"ms/op",800000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.remove","ss",1,1,69.142044,NaN,"ms/op",900000
+"com.fiit.dsa.hashTable.test.ClosedHashTableTest.remove","ss",1,1,76.995610,NaN,"ms/op",1000000
