@@ -3,9 +3,6 @@ package com.fiit.dsa.tree;
 
 public class SplayTree extends SelfBalancingBinarySearchTree {
 
-    /**
-     *
-     */
     @Override
     public Node search(int element) {
         Node node = super.search(element);
@@ -15,9 +12,6 @@ public class SplayTree extends SelfBalancingBinarySearchTree {
         return node;
     }
 
-    /**
-     *
-     */
     @Override
     public Node insert(int element) {
         Node insertNode = super.insert(element);
@@ -25,9 +19,6 @@ public class SplayTree extends SelfBalancingBinarySearchTree {
         return insertNode;
     }
 
-    /**
-     *
-     */
     @Override
     public Node delete(int element) {
         // search first, because need parent to splay, might be improved later if needed
@@ -43,9 +34,6 @@ public class SplayTree extends SelfBalancingBinarySearchTree {
         return successor;
     }
 
-    /**
-     *
-     */
     @Override
     protected Node createNode(int value, Node parent, Node left, Node right) {
         return new Node(value, parent, left, right);
@@ -53,8 +41,6 @@ public class SplayTree extends SelfBalancingBinarySearchTree {
 
     /**
      * Splay operation. Move node to the root through some tree transformations.
-     *
-     * @param node Node to perform splay operation on.
      */
     protected void splay(Node node) {
         // move node up until its root

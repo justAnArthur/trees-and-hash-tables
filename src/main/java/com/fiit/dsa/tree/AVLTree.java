@@ -2,16 +2,6 @@ package com.fiit.dsa.tree;
 
 /**
  * AVL tree implementation.
- * <p>
- * In computer science, an AVL tree is a self-balancing binary search tree, and
- * it was the first such data structure to be invented.[1] In an AVL tree, the
- * heights of the two child subtrees of any node differ by at most one. Lookup,
- * insertion, and deletion all take O(log n) time in both the average and worst
- * cases, where n is the number of nodes in the tree prior to the operation.
- * Insertions and deletions may require the tree to be rebalanced by one or more
- * tree rotations.
- *
- * @author Artur Kozubov
  */
 public class AVLTree extends SelfBalancingBinarySearchTree {
 
@@ -59,10 +49,8 @@ public class AVLTree extends SelfBalancingBinarySearchTree {
     }
 
     /**
-     * Go up from inserted node, and update height and balance informations if needed.
+     * Go up from inserted node, and update height and balance information if needed.
      * If some node balance reaches 2 or -2 that means that subtree must be rebalanced.
-     *
-     * @param node Inserted Node.
      */
     private void rebalance(AVLNode node) {
         while (node != null) {
@@ -163,8 +151,6 @@ public class AVLTree extends SelfBalancingBinarySearchTree {
 
     /**
      * Updates height and balance of the node.
-     *
-     * @param node Node for which height and balance must be updated.
      */
     private static void updateHeight(AVLNode node) {
         int leftHeight = (node.left == null) ? -1 : ((AVLNode) node.left).height;

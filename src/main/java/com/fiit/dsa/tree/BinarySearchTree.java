@@ -1,11 +1,7 @@
 package com.fiit.dsa.tree;
 
 /**
- * Abstract binary search tree implementation. Its basically fully implemented
- * binary search tree, just template method is provided for creating Node (other
- * trees can have slightly different nodes with more info). This way some code
- * from standard binary search tree can be reused for other kinds of binary
- * trees.
+ * Abstract binary search tree implementation.
  */
 public abstract class BinarySearchTree {
 
@@ -23,21 +19,12 @@ public abstract class BinarySearchTree {
      * Because this is abstract class and various trees have different additional information on
      * different nodes subclasses uses this abstract method to create nodes (maybe of class {@link Node}
      * or maybe some different node subclass).
-     *
-     * @param value  Value that node will have.
-     * @param parent Node's parent.
-     * @param left   Node's left child.
-     * @param right  Node's right child.
-     * @return Created node instance.
      */
     protected abstract Node createNode(int value, Node parent, Node left, Node right);
 
     /**
      * Finds a node with concrete value. If it is not found then null is
      * returned.
-     *
-     * @param element Element value.
-     * @return Node with value provided, or null if not found.
      */
     public Node search(int element) {
         Node node = root;
@@ -53,8 +40,6 @@ public abstract class BinarySearchTree {
 
     /**
      * Insert new element to tree.
-     *
-     * @param element Element to insert.
      */
     public Node insert(int element) {
         if (root == null) {
@@ -87,10 +72,6 @@ public abstract class BinarySearchTree {
 
     /**
      * Removes element if node with such value exists.
-     *
-     * @param element Element value to remove.
-     * @return New node that is in place of deleted node. Or null if element for
-     * delete was not found.
      */
     public Node delete(int element) {
         Node deleteNode = search(element);
@@ -103,10 +84,6 @@ public abstract class BinarySearchTree {
 
     /**
      * Delete logic when node is already found.
-     *
-     * @param deleteNode Node that needs to be deleted.
-     * @return New node that is in place of deleted node. Or null if element for
-     * delete was not found.
      */
     protected Node delete(Node deleteNode) {
         if (deleteNode != null) {
@@ -138,10 +115,6 @@ public abstract class BinarySearchTree {
 
     /**
      * Put one node from tree (newNode) to the place of another (nodeToReplace).
-     *
-     * @param nodeToReplace Node which is replaced by newNode and removed from tree.
-     * @param newNode       New node.
-     * @return New replaced node.
      */
     private Node transplant(Node nodeToReplace, Node newNode) {
         if (nodeToReplace.parent == null) {
@@ -157,41 +130,25 @@ public abstract class BinarySearchTree {
         return newNode;
     }
 
-    /**
-     * @return true if tree contains element.
-     */
     public boolean contains(int element) {
         return search(element) != null;
     }
 
-    /**
-     * @return Minimum element in tree.
-     */
     public int getMinimum() {
         return getMinimum(root).value;
     }
 
-    /**
-     * @return Maximum element in tree.
-     */
     public int getMaximum() {
         return getMaximum(root).value;
     }
 
     /**
      * Get next element who is bigger than provided element.
-     *
-     * @param element Element for whom descendant element is searched
-     * @return Successor value.
      */
-    // TODO Predecessor
     public int getSuccessor(int element) {
         return getSuccessor(search(element)).value;
     }
 
-    /**
-     * @return Number of elements in the tree.
-     */
     public int getSize() {
         return size;
     }
