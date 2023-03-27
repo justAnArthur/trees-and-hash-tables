@@ -180,25 +180,25 @@ public Node search(int element) {
 <tr>
 <td>
 
-![img_1.png](images/img_1.png)
+![img_1.png](_images/img_1.png)
 <text>4 is not found so, traverse through the left subtree of 8</text>
 
 </td>
 <td>
 
-![img_2.png](images/img_2.png)
+![img_2.png](_images/img_2.png)
 <text>4 is not found so, traverse through the right subtree of 3</text>
 
 </td>
 <td>
 
-![img_3.png](images/img_3.png)
+![img_3.png](_images/img_3.png)
 <text>4 is not found so, traverse through the left subtree of 6</text>
 
 </td>
 <td>
 
-![img_4.png](images/img_4.png)
+![img_4.png](_images/img_4.png)
 <text>4 is found</text>
 
 </td>
@@ -257,25 +257,25 @@ public Node insert(int element) {
 <tr>
 <td>
 
-![img_5.png](images/img_5.png)
+![img_5.png](_images/img_5.png)
 <text>4<8 so, transverse through the left child of 8</text>
 
 </td>
 <td>
 
-![img_6.png](images/img_6.png)
+![img_6.png](_images/img_6.png)
 <text>4>3 so, transverse through the right child of 8</text>
 
 </td>
 <td>
 
-![img_7.png](images/img_7.png)
+![img_7.png](_images/img_7.png)
 <text>4<6 so, transverse through the left child of 6</text>
 
 </td>
 <td>
 
-![img_8.png](images/img_8.png)
+![img_8.png](_images/img_8.png)
 <text>Insert 4 as a left child of 6</text>
 
 </td>
@@ -342,13 +342,13 @@ In the first case, the node to be deleted is the leaf node. In such a case, simp
 <tr>
 <td>
 
-![img_9.png](images/img_9.png)
+![img_9.png](_images/img_9.png)
 <text>4 is to be deleted</text>
 
 </td>
 <td>
 
-![img_10.png](images/img_10.png)
+![img_10.png](_images/img_10.png)
 <text>Delete the node</text>
 
 </td>
@@ -368,19 +368,19 @@ In the second case, the node to be deleted lies has a single child node. In such
 <tr>
 <td>
 
-![img_11.png](images/img_11.png)
+![img_11.png](_images/img_11.png)
 <text>6 is to be deleted</text>
 
 </td>
 <td>
 
-![img_12.png](images/img_12.png)
+![img_12.png](_images/img_12.png)
 <text>copy the value of its child to the node and delete the child</text>
 
 </td>
 <td>
 
-![img_13.png](images/img_13.png)
+![img_13.png](_images/img_13.png)
 <text>Final tree</text>
 
 </td>
@@ -399,19 +399,19 @@ In the third case, the node to be deleted has two children. In such a case follo
 <tr>
 <td>
 
-![img_14.png](images/img_14.png)
+![img_14.png](_images/img_14.png)
 <text>3 is to be deleted</text>
 
 </td>
 <td>
 
-![img_15.png](images/img_15.png)
+![img_15.png](_images/img_15.png)
 <text>Copy the value of the inorder successor (4) to the node</text>
 
 </td>
 <td>
 
-![img_16.png](images/img_16.png)
+![img_16.png](_images/img_16.png)
 <text>Delete the inorder successor</text>
 
 </td>
@@ -496,7 +496,7 @@ protected Node rotateLeft(Node node) {
 </td>
 <td>
 
-![img_17.png](images/img_17.png)
+![img_17.png](_images/img_17.png)
 <text>Left rotate</text>
 
 </td>
@@ -507,7 +507,7 @@ protected Node rotateLeft(Node node) {
 </td>
 <td>
 
-![img_18.png](images/img_18.png)
+![img_18.png](_images/img_18.png)
 <text>Assign x as the parent of the left subtree of y</text>
 
 </td>
@@ -522,7 +522,7 @@ protected Node rotateLeft(Node node) {
 </td>
 <td>
 
-![img_19.png](images/img_19.png)
+![img_19.png](_images/img_19.png)
 <text>Change the parent of x to that of y</text>
 
 </td>
@@ -533,7 +533,7 @@ protected Node rotateLeft(Node node) {
 </td>
 <td>
 
-![img_20.png](images/img_20.png)
+![img_20.png](_images/img_20.png)
 <text>Assign y as the parent of x</text>
 
 </td>
@@ -590,7 +590,7 @@ protected Node rotateLeft(Node node) {
 </td>
 <td>
 
-![img_21.png](images/img_21.png)
+![img_21.png](_images/img_21.png)
 <text>Initial tree</text>
 
 </td>
@@ -601,7 +601,7 @@ protected Node rotateLeft(Node node) {
 </td>
 <td>
 
-![img_22.png](images/img_22.png)
+![img_22.png](_images/img_22.png)
 <text>Assign y as the parent of the right subtree of x</text>
 
 </td>
@@ -616,7 +616,7 @@ protected Node rotateLeft(Node node) {
 </td>
 <td>
 
-![img_23.png](images/img_23.png)
+![img_23.png](_images/img_23.png)
 <text>Assign the parent of y as the parent of x</text>
 
 </td>
@@ -627,7 +627,7 @@ protected Node rotateLeft(Node node) {
 </td>
 <td>
 
-![img_25.png](images/img_25.png)
+![img_25.png](_images/img_25.png)
 <text>Assign x as the parent of y</text>
 
 </td>
@@ -749,13 +749,13 @@ private void rebalance(AVLNode node) {
 <tr>
 <td>
 
-![img_26.png](images/img_26.png)
+![img_26.png](_images/img_26.png)
 <text>1. Updating the balance factor after insertion 8</text>
 
 </td>
 <td colspan="2">
 
-![img_27.png](images/img_27.png)
+![img_27.png](_images/img_27.png)
 <text>2. Balancing the tree with rotation</text>
 
 </td>
@@ -763,13 +763,13 @@ private void rebalance(AVLNode node) {
 <tr>
 <td>
 
-![img_29.png](images/img_29.png)
+![img_29.png](_images/img_29.png)
 <text>4. Final balanced tree</text>
 
 </td>
 <td colspan="2">
 
-![img_28.png](images/img_28.png)
+![img_28.png](_images/img_28.png)
 <text>3. Balancing the tree with rotation</text>
 
 </td>
@@ -1576,7 +1576,7 @@ In this case, h(k) will provide a new index for us to store the element associat
 </td>
 <td>
 
-![img_30.png](images/img_30.png)
+![img_30.png](_images/img_30.png)
 
 </td>
 </tr>
@@ -2148,6 +2148,8 @@ than another variant of hashtable.
 </td>
 </tr>
 </table>
+
+---
 
 # Comparing
 
