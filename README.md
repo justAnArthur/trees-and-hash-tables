@@ -2145,8 +2145,6 @@ Cons:
 </tr>
 </table>
 
-<<<<<<< HEAD
-
 ---
 
 ### References
@@ -2205,4 +2203,3 @@ Cons:
 
 - High Performance Java Persistence by Vlad Mihalcea - This book covers performance tuning for Java persistence
   frameworks like Hibernate and JPA.
->>>>>>> 8190c6b (- files)
