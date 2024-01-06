@@ -44,7 +44,11 @@ STU | FIIT
 
 ### Artur Kozubov
 
+<<<<<<< HEAD
 #### Pondelok, 27. Marca 2023
+=======
+#### Monday, 27 March 2023
+>>>>>>> 8190c6b (- files)
 
 </div>
 
@@ -2198,6 +2202,7 @@ Cons:
 </tr>
 </table>
 
+<<<<<<< HEAD
 
 ---
 
@@ -2211,3 +2216,50 @@ Cons:
 - https://www.baeldung.com/java-microbenchmark-harness
 - [Data Structures And Algorithms: Made Easy.](https://books.google.sk/books/about/Data_Structures_And_Algorithms.html?id=af3MBAAAQBAJ&redir_esc=y)
 - [Algorithms](https://algs4.cs.princeton.edu/home/)
+=======
+---
+
+# References
+
+- Programiz: "Hash Table in Data Structure - Operations and Implementation."
+  Programiz, www.programiz.com/dsa/hash-table.
+
+- Programiz: "Binary Search Tree in Data Structure - Operations and Implementation."
+  Programiz, www.programiz.com/dsa/binary-search-tree.
+
+- GeeksforGeeks: "Introduction to AVL Trees." GeeksforGeeks, 7 May
+  2015, www.geeksforgeeks.org/introduction-to-avl-tree/.
+
+- GitHub: "ignl/BinarySearchTrees." GitHub, github.com/ignl/BinarySearchTrees.
+
+- Awesome Testing: "Performance Testing: Benchmarking Java." Awesome Testing, 22 May
+  2019, www.awesome-testing.com/2019/05/performance-testing-benchmarking-java.html.
+
+- Baeldung: "Java Microbenchmarking with JMH." Baeldung, www.baeldung.com/java-microbenchmark-harness.
+
+- Narasimha Karumanchi. Data Structures And Algorithms: Made Easy. CareerMonk Publications, 2011.
+
+- Sedgewick, Robert, and Kevin Wayne. Algorithms. 4th ed., Princeton University Press, 2011.
+
+- Data Structures and Algorithms: Annotated Reference with Examples by Granville Barnett and Luca Del Tongo - This book
+  covers a wide range of data structures and algorithms, with a focus on practical implementation and use cases.
+
+- The Algorithm Design Manual by Steven Skiena - This book provides an introduction to algorithm design, with a focus on
+  practical problem-solving techniques.
+
+- Algorithms Illuminated (Part 1): The Basics by Tim Roughgarden - This book covers basic algorithms and data
+  structures, with an emphasis on understanding the principles behind them.
+
+- Introduction to Algorithms, 3rd Edition by Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford
+  Stein - This is a classic textbook on algorithms that covers a wide range of topics, from sorting algorithms to graph
+  algorithms.
+
+- Java Performance: The Definitive Guide by Scott Oaks - This book covers Java performance tuning, profiling, and
+  optimization techniques.
+
+- The Art of Computer Programming by Donald E. Knuth - This is a classic series of books on computer programming that
+  covers a wide range of algorithms and data structures, as well as the mathematics and theory behind them.
+
+- High Performance Java Persistence by Vlad Mihalcea - This book covers performance tuning for Java persistence
+  frameworks like Hibernate and JPA.
+>>>>>>> 8190c6b (- files)

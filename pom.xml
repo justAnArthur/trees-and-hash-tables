@@ -31,6 +31,7 @@
 
     <build>
         <plugins>
+<<<<<<< HEAD
             <!--
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
@@ -90,6 +91,8 @@
                 </executions>
             </plugin>-->
 
+=======
+>>>>>>> 8190c6b (- files)
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -114,7 +117,10 @@
                     </execution>
                 </executions>
             </plugin>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8190c6b (- files)
         </plugins>
     </build>
 </project>
