@@ -116,6 +116,10 @@ Java 18, Maven (`jar-with-dependencies` assembly), [JMH](https://github.com/open
 
 ---
 
+## License
+
+[Apache-2.0](LICENSE). The four tree classes are adapted from [ignl/BinarySearchTrees](https://github.com/ignl/BinarySearchTrees) by Ignas, which is also Apache-2.0.
+
 ## Report
 
 # Content
