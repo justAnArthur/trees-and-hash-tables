@@ -1,3 +1,123 @@
+<a href="https://github.com/justAnArthur/trees-and-hash-tables"><img src=".github/banner.svg" alt="Trees and hash tables: AVL and splay trees against chaining and open-addressing hash tables, benchmarked with JMH up to a million keys." width="100%"></a>
+
+# Trees and hash tables
+
+Two self-balancing binary search trees and two hash tables in Java, each benchmarked with JMH. Built for Data Structures and Algorithms (DSA) at FIIT STU in spring 2023, as assignment 1 (search in dynamic sets).
+
+> Finished and archived. The four tree classes closely follow [ignl/BinarySearchTrees](https://github.com/ignl/BinarySearchTrees) (Apache-2.0), which the report lists under references.
+
+## What it does
+
+- `AVLTree` walks up from every insert and delete and fixes any node whose subtrees differ in height by 2, with single or double rotations
+- `SplayTree` moves every searched or inserted node, and the parent of a deleted one, to the root with zig, zig-zig and zig-zag rotations
+- `ClosedHashTable` chains colliding entries in a linked list per bucket; `OpenHashTable` uses open addressing with linear probing and marks removed entries as deleted. Both have a fixed capacity and never resize
+- JMH benchmarks for each structure (random and sorted inserts, delete, search; put, get, remove), single-shot, in ms
+- `Manager` asks for a class, a benchmark and a size and runs it; `Logger` writes results to CSV for the plots in the report
+
+## How it works
+
+```mermaid
+classDiagram
+  class BinarySearchTree {
+    <<abstract>>
+    +search(int) Node
+    +insert(int) Node
+    +delete(int) Node
+  }
+  class SelfBalancingBinarySearchTree {
+    <<abstract>>
+    #rotateLeft(Node) Node
+    #rotateRight(Node) Node
+  }
+  class AVLTree {
+    -rebalance(AVLNode)
+  }
+  class SplayTree {
+    #splay(Node)
+  }
+  BinarySearchTree <|-- SelfBalancingBinarySearchTree
+  SelfBalancingBinarySearchTree <|-- AVLTree
+  SelfBalancingBinarySearchTree <|-- SplayTree
+  class HashTable~K,V~ {
+    <<interface>>
+    +get(K) V
+    +put(K, V)
+    +remove(K)
+  }
+  class ClosedHashTable~K,V~ {
+    -HashNode[] buckets
+  }
+  class OpenHashTable~K,V~ {
+    -HashEntry[] table
+  }
+  class HashNode~K,V~ {
+    -HashNode next
+  }
+  class HashEntry~K,V~ {
+    -boolean deleted
+  }
+  HashTable <|.. ClosedHashTable
+  HashTable <|.. OpenHashTable
+  ClosedHashTable --> HashNode : chains in
+  OpenHashTable --> HashEntry : probes over
+```
+
+## Results
+
+From the benchmark CSVs in `src/main/resources` (the data behind the report's graphs); one single-shot run per size, in ms, on the Intel Xeon Platinum 8270 server the report names.
+
+| Benchmark | Tree | n = 100,000 | n = 500,000 | n = 1,000,000 |
+|---|---|---:|---:|---:|
+| insert n random keys | AVL | 69.1 | 271.7 | 780.8 |
+| | Splay | 102.1 | 609.3 | 1608.4 |
+| insert keys 0 … n−1 in order | AVL | 35.6 | 71.3 | 155.6 |
+| | Splay | 19.4 | 88.4 | 176.4 |
+| delete n keys | AVL | 48.6 | 439.0 | 973.7 |
+| | Splay | 91.1 | 1104.7 | 2738.6 |
+
+| Benchmark | Hash table | n = 10,000 | n = 50,000 | n = 100,000 |
+|---|---|---:|---:|---:|
+| put n entries | chaining | 5.1 | 11.4 | 26.6 |
+| | linear probing | 15.5 | 169.0 | 943.1 |
+| get n keys | chaining | 3.3 | 10.9 | 20.4 |
+| | linear probing | 20.9 | 112.2 | 390.9 |
+
+AVL beat splay on random inserts and deletes at every size shown. Both tables are created with capacity n, so the probing table ends up full, and its gets were 19× slower than chaining at 100,000 entries. Left out: the `search` and `insert_to_size` tree benchmarks run against `insertSortedTree`, which the JMH setup recreates empty before every invocation, and the hash-table `remove` benchmarks call `get`. The CSVs keep those numbers too.
+
+## Run
+
+```bash
+mvn package
+java -jar target/dsa_first_assignment-1.0-SNAPSHOT-jar-with-dependencies.jar
+```
+
+```text
+Class to be tested [AVLTreeTest, SplayTreeTest, OpenHashTableTest, ClosedHashTableTest] :
+AVLTreeTest
+Method to be tested [insert_random, insert_sorted, insert_to_size, delete, search, *] :
+insert_random
+Size `number` :
+10000
+...
+Benchmark                  (size)  Mode  Cnt  Score   Error  Units
+AVLTreeTest.insert_random   10000    ss       1.449          ms/op
+```
+
+`java -cp target/dsa_first_assignment-1.0-SNAPSHOT-jar-with-dependencies.jar com.fiit.dsa.Logger` runs every benchmark at size 1,000 and writes `src/main/resources/<structure>/sample.csv`.
+
+## Stack
+
+Java 18, Maven (`jar-with-dependencies` assembly), [JMH](https://github.com/openjdk/jmh) 1.21.
+
+## Documentation
+
+- [src/main/resources/index.pdf](src/main/resources/index.pdf): the assignment report, also kept in full below
+- [src/main/resources](src/main/resources): benchmark CSVs and graphs per structure, with the `graph` commands that drew them
+
+---
+
+## Report
+
 # Content
 
 1. Introduction
@@ -127,25 +247,25 @@ public Node search(int element) {
 <tr>
 <td>
 
-![img_1.png](_images/img_1.png)
+![img_1.png](src/main/resources/_images/img_1.png)
 <text>4 is not found so, traverse through the left subtree of 8</text>
 
 </td>
 <td>
 
-![img_2.png](_images/img_2.png)
+![img_2.png](src/main/resources/_images/img_2.png)
 <text>4 is not found so, traverse through the right subtree of 3</text>
 
 </td>
 <td>
 
-![img_3.png](_images/img_3.png)
+![img_3.png](src/main/resources/_images/img_3.png)
 <text>4 is not found so, traverse through the left subtree of 6</text>
 
 </td>
 <td>
 
-![img_4.png](_images/img_4.png)
+![img_4.png](src/main/resources/_images/img_4.png)
 <text>4 is found</text>
 
 </td>
@@ -204,25 +324,25 @@ public Node insert(int element) {
 <tr>
 <td>
 
-![img_5.png](_images/img_5.png)
+![img_5.png](src/main/resources/_images/img_5.png)
 <text>4<8 so, transverse through the left child of 8</text>
 
 </td>
 <td>
 
-![img_6.png](_images/img_6.png)
+![img_6.png](src/main/resources/_images/img_6.png)
 <text>4>3 so, transverse through the right child of 8</text>
 
 </td>
 <td>
 
-![img_7.png](_images/img_7.png)
+![img_7.png](src/main/resources/_images/img_7.png)
 <text>4<6 so, transverse through the left child of 6</text>
 
 </td>
 <td>
 
-![img_8.png](_images/img_8.png)
+![img_8.png](src/main/resources/_images/img_8.png)
 <text>Insert 4 as a left child of 6</text>
 
 </td>
@@ -289,13 +409,13 @@ In the first case, the node to be deleted is the leaf node. In such a case, simp
 <tr>
 <td>
 
-![img_9.png](_images/img_9.png)
+![img_9.png](src/main/resources/_images/img_9.png)
 <text>4 is to be deleted</text>
 
 </td>
 <td>
 
-![img_10.png](_images/img_10.png)
+![img_10.png](src/main/resources/_images/img_10.png)
 <text>Delete the node</text>
 
 </td>
@@ -315,19 +435,19 @@ In the second case, the node to be deleted lies has a single child node. In such
 <tr>
 <td>
 
-![img_11.png](_images/img_11.png)
+![img_11.png](src/main/resources/_images/img_11.png)
 <text>6 is to be deleted</text>
 
 </td>
 <td>
 
-![img_12.png](_images/img_12.png)
+![img_12.png](src/main/resources/_images/img_12.png)
 <text>copy the value of its child to the node and delete the child</text>
 
 </td>
 <td>
 
-![img_13.png](_images/img_13.png)
+![img_13.png](src/main/resources/_images/img_13.png)
 <text>Final tree</text>
 
 </td>
@@ -346,19 +466,19 @@ In the third case, the node to be deleted has two children. In such a case follo
 <tr>
 <td>
 
-![img_14.png](_images/img_14.png)
+![img_14.png](src/main/resources/_images/img_14.png)
 <text>3 is to be deleted</text>
 
 </td>
 <td>
 
-![img_15.png](_images/img_15.png)
+![img_15.png](src/main/resources/_images/img_15.png)
 <text>Copy the value of the inorder successor (4) to the node</text>
 
 </td>
 <td>
 
-![img_16.png](_images/img_16.png)
+![img_16.png](src/main/resources/_images/img_16.png)
 <text>Delete the inorder successor</text>
 
 </td>
@@ -443,7 +563,7 @@ protected Node rotateLeft(Node node) {
 </td>
 <td>
 
-![img_17.png](_images/img_17.png)
+![img_17.png](src/main/resources/_images/img_17.png)
 <text>Left rotate</text>
 
 </td>
@@ -454,7 +574,7 @@ protected Node rotateLeft(Node node) {
 </td>
 <td>
 
-![img_18.png](_images/img_18.png)
+![img_18.png](src/main/resources/_images/img_18.png)
 <text>Assign x as the parent of the left subtree of y</text>
 
 </td>
@@ -469,7 +589,7 @@ protected Node rotateLeft(Node node) {
 </td>
 <td>
 
-![img_19.png](_images/img_19.png)
+![img_19.png](src/main/resources/_images/img_19.png)
 <text>Change the parent of x to that of y</text>
 
 </td>
@@ -480,7 +600,7 @@ protected Node rotateLeft(Node node) {
 </td>
 <td>
 
-![img_20.png](_images/img_20.png)
+![img_20.png](src/main/resources/_images/img_20.png)
 <text>Assign y as the parent of x</text>
 
 </td>
@@ -537,7 +657,7 @@ protected Node rotateLeft(Node node) {
 </td>
 <td>
 
-![img_21.png](_images/img_21.png)
+![img_21.png](src/main/resources/_images/img_21.png)
 <text>Initial tree</text>
 
 </td>
@@ -548,7 +668,7 @@ protected Node rotateLeft(Node node) {
 </td>
 <td>
 
-![img_22.png](_images/img_22.png)
+![img_22.png](src/main/resources/_images/img_22.png)
 <text>Assign y as the parent of the right subtree of x</text>
 
 </td>
@@ -563,7 +683,7 @@ protected Node rotateLeft(Node node) {
 </td>
 <td>
 
-![img_23.png](_images/img_23.png)
+![img_23.png](src/main/resources/_images/img_23.png)
 <text>Assign the parent of y as the parent of x</text>
 
 </td>
@@ -574,7 +694,7 @@ protected Node rotateLeft(Node node) {
 </td>
 <td>
 
-![img_25.png](_images/img_25.png)
+![img_25.png](src/main/resources/_images/img_25.png)
 <text>Assign x as the parent of y</text>
 
 </td>
@@ -696,13 +816,13 @@ private void rebalance(AVLNode node) {
 <tr>
 <td>
 
-![img_26.png](_images/img_26.png)
+![img_26.png](src/main/resources/_images/img_26.png)
 <text>1. Updating the balance factor after insertion 8</text>
 
 </td>
 <td colspan="2">
 
-![img_27.png](_images/img_27.png)
+![img_27.png](src/main/resources/_images/img_27.png)
 <text>2. Balancing the tree with rotation</text>
 
 </td>
@@ -710,13 +830,13 @@ private void rebalance(AVLNode node) {
 <tr>
 <td>
 
-![img_29.png](_images/img_29.png)
+![img_29.png](src/main/resources/_images/img_29.png)
 <text>4. Final balanced tree</text>
 
 </td>
 <td colspan="2">
 
-![img_28.png](_images/img_28.png)
+![img_28.png](src/main/resources/_images/img_28.png)
 <text>3. Balancing the tree with rotation</text>
 
 </td>
@@ -769,7 +889,7 @@ public void insert_random() {
 <tr>
 <td style="padding: 0" colspan="2">
 
-![insert_random.png](AVLTree/insert_random.png)
+![insert_random.png](src/main/resources/AVLTree/insert_random.png)
 
 </td>
 </tr>
@@ -826,7 +946,7 @@ public void insert_sorted() {
 <tr>
 <td style="padding: 0" colspan="2">
 
-![insert_sorted.png](AVLTree/insert_sorted.png)
+![insert_sorted.png](src/main/resources/AVLTree/insert_sorted.png)
 
 </td>
 </tr>
@@ -884,7 +1004,7 @@ public void insert_to_size() {
 <tr>
 <td style="padding: 0" colspan="2">
 
-![insert_to_size.png](AVLTree/insert_to_size.png)
+![insert_to_size.png](src/main/resources/AVLTree/insert_to_size.png)
 
 </td>
 </tr>
@@ -950,7 +1070,7 @@ public void delete() {
 <tr>
 <td style="padding: 0" colspan="2">
 
-![delete.png](AVLTree/delete.png)
+![delete.png](src/main/resources/AVLTree/delete.png)
 
 </td>
 </tr>
@@ -1014,7 +1134,7 @@ public void search() {
 <tr>
 <td style="padding: 0" colspan="2">
 
-![search.png](AVLTree/search.png)
+![search.png](src/main/resources/AVLTree/search.png)
 
 </td>
 </tr>
@@ -1033,7 +1153,7 @@ And we clearly see here a logarithmic graph here.
 
 ### Conclusion
 
-![sample.png](AVLTree/sample.png)
+![sample.png](src/main/resources/AVLTree/sample.png)
 
 Relative to this graph, we can observe that the AVL tree is not best suited for dynamic structures - as it has the
 fastest search time.
@@ -1181,7 +1301,7 @@ public void insert_random() {
 <tr>
 <td style="padding: 0" colspan="2">
 
-![insert_random.png](SplayTree/insert_random.png)
+![insert_random.png](src/main/resources/SplayTree/insert_random.png)
 
 </td>
 </tr>
@@ -1239,7 +1359,7 @@ public void insert_sorted() {
 <tr>
 <td style="padding: 0" colspan="2">
 
-![insert_sorted.png](SplayTree/insert_sorted.png)
+![insert_sorted.png](src/main/resources/SplayTree/insert_sorted.png)
 
 </td>
 </tr>
@@ -1297,7 +1417,7 @@ public void insert_to_size() {
 <tr>
 <td style="padding: 0" colspan="2">
 
-![insert_to_size.png](SplayTree/insert_to_size.png)
+![insert_to_size.png](src/main/resources/SplayTree/insert_to_size.png)
 
 </td>
 </tr>
@@ -1363,7 +1483,7 @@ public void delete() {
 <tr>
 <td style="padding: 0" colspan="2">
 
-![delete.png](SplayTree/delete.png)
+![delete.png](src/main/resources/SplayTree/delete.png)
 
 </td>
 </tr>
@@ -1427,7 +1547,7 @@ public void search() {
 <tr>
 <td style="padding: 0" colspan="2">
 
-![search.png](SplayTree/search.png)
+![search.png](src/main/resources/SplayTree/search.png)
 
 </td>
 </tr>
@@ -1446,7 +1566,7 @@ And we clearly see here a logarithmic graph here.
 
 ### Conclusion
 
-![sample.png](SplayTree/sample.png)
+![sample.png](src/main/resources/SplayTree/sample.png)
 
 Regarding the graph, in this case we see that it is more optimally suited than AVL to the dynamic structure.
 
@@ -1474,12 +1594,12 @@ ___
 <tr>
 <td style="padding: 0">
 
-![sample.png](AVLTree/sample.png)
+![sample.png](src/main/resources/AVLTree/sample.png)
 
 </td>
 <td style="padding: 0">
 
-![sample.png](SplayTree/sample.png)
+![sample.png](src/main/resources/SplayTree/sample.png)
 
 </td>
 </tr>
@@ -1523,7 +1643,7 @@ In this case, h(k) will provide a new index for us to store the element associat
 </td>
 <td>
 
-![img_30.png](_images/img_30.png)
+![img_30.png](src/main/resources/_images/img_30.png)
 
 </td>
 </tr>
@@ -1698,7 +1818,7 @@ public void get() {
 <tr>
 <td style="padding: 0" colspan="2">
 
-![get.png](ClosedHashTable/get.png)
+![get.png](src/main/resources/ClosedHashTable/get.png)
 
 </td>
 </tr>
@@ -1755,7 +1875,7 @@ public void put() {
 <tr>
 <td style="padding: 0" colspan="2">
 
-![put.png](ClosedHashTable/put.png)
+![put.png](src/main/resources/ClosedHashTable/put.png)
 
 </td>
 </tr>
@@ -1817,7 +1937,7 @@ public void remove() {
 <tr>
 <td style="padding: 0" colspan="2">
 
-![remove.png](ClosedHashTable/remove.png)
+![remove.png](src/main/resources/ClosedHashTable/remove.png)
 
 </td>
 </tr>
@@ -1964,7 +2084,7 @@ public void get() {
 <tr>
 <td style="padding: 0" colspan="2">
 
-![get.png](OpenHashTable/get.png)
+![get.png](src/main/resources/OpenHashTable/get.png)
 
 </td>
 </tr>
@@ -2021,7 +2141,7 @@ public void put() {
 <tr>
 <td style="padding: 0" colspan="2">
 
-![put.png](OpenHashTable/put.png)
+![put.png](src/main/resources/OpenHashTable/put.png)
 
 </td>
 </tr>
@@ -2082,7 +2202,7 @@ public void remove() {
 <tr>
 <td style="padding: 0" colspan="2">
 
-![remove.png](OpenHashTable/remove.png)
+![remove.png](src/main/resources/OpenHashTable/remove.png)
 
 </td>
 </tr>
@@ -2104,12 +2224,12 @@ than another variant of hashtable.
 <tr>
 <td>
 
-![sample.png](OpenHashTable/sample.png)
+![sample.png](src/main/resources/OpenHashTable/sample.png)
 
 </td>
 <td>
 
-![sample.png](ClosedHashTable/sample.png)
+![sample.png](src/main/resources/ClosedHashTable/sample.png)
 
 </td>
 </tr>
@@ -2157,7 +2277,6 @@ Cons:
 - https://www.baeldung.com/java-microbenchmark-harness
 - [Data Structures And Algorithms: Made Easy.](https://books.google.sk/books/about/Data_Structures_And_Algorithms.html?id=af3MBAAAQBAJ&redir_esc=y)
 - [Algorithms](https://algs4.cs.princeton.edu/home/)
-=======
 ---
 
 # References
